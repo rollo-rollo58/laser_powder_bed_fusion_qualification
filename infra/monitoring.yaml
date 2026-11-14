@@ -1,0 +1,23 @@
+groups:
+  - name: lpbf-workbench
+    rules:
+      - alert: LpbfTelemetryStalled
+        expr: increase(lpbf_telemetry_packets_total[10m]) == 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: No telemetry traffic has been observed in the monitoring window
+      - alert: LpbfEvaluationErrorRatioHigh
+        expr: |
+          sum(rate(lpbf_evaluation_requests_total{status="error"}[10m]))
+          /
+          clamp_min(sum(rate(lpbf_evaluation_requests_total[10m])), 0.001)
+          > 0.04
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: Research evaluation error ratio exceeds four percent
+      - record: lpbf:active_builds:total
+        expr: sum(lpbf_active_builds)

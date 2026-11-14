@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #090e16; color: #e5edf5; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: 0.55; }
+button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid #67e8d6;
+  outline-offset: 2px;
+}
+.panel { @apply rounded-2xl border border-stroke bg-panel/85 p-5 shadow-xl; }
+.eyebrow { @apply text-xs font-semibold uppercase tracking-widest text-aqua; }
+.field { @apply rounded-lg border border-stroke bg-shell px-3 py-2 text-sm text-white; }
+.action { @apply rounded-lg bg-aqua px-4 py-2 text-sm font-semibold text-slate-950; }
+.muted { @apply text-sm text-slate-400; }
+.metric { @apply text-2xl font-semibold tracking-tight text-white; }
+.grid-lines { background-image: linear-gradient(#ffffff08 1px, transparent 1px),
+  linear-gradient(90deg, #ffffff08 1px, transparent 1px); background-size: 32px 32px; }
